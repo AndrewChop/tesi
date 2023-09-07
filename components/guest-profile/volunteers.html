@@ -26,11 +26,15 @@
 
     <div id="user-list" class="user-list">
         <h3>Volunteers List</h3>
+        <div class="remove-all-volunteers">
+            <button id="remove-all-button">Remove All</button>
+        </div>
         <ul id="user-items" class="user-items">
             <li>
                 <span>${user.name} ${user.surname}</span>
                 <span>${user.cardNumber}</span>
                 <button class="edit-button" data-cardNumber="${user.cardNumber}">Edit</button>
+                <button class="remove-button" data-cardNumber="${student.cardNumber}">Remove</button>
             </li>
         </ul>
     </div>
@@ -110,7 +114,7 @@
                     <label for="user-issued-by">Issued By:</label>
                     <input type="text" id="user-issued-by" class="personal-data-input">
         
-                    <button type="button" id="confirm-user">Add User</button>
+                    <button type="button" id="confirm-user">Add Volunteer</button>
                 </form>
             </div>
         </div>

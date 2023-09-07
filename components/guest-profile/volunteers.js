@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span>${user.name} ${user.surname}</span>
                 <span>${user.cardNumber}</span>
                 <button class="edit-button" data-cardNumber="${user.cardNumber}">Edit</button>
+                <button class="remove-button" data-cardNumber="${user.cardNumber}">Remove</button>
             `;
             userItems.appendChild(userItem);
         });
@@ -267,6 +268,39 @@ document.addEventListener('DOMContentLoaded', function () {
         saveUserListToLocalStorage(users);
     });
 
+    // Gestore di eventi per il click sul pulsante "Remove"
+    function handleRemoveButtonClick(event) {
+        if (event.target.classList.contains('remove-button')) {
+            const cardNumber = event.target.getAttribute('data-cardNumber');
+
+            // Trova l'indice dello studente da rimuovere nell'array "students"
+            const indexOfUserToRemove = users.findIndex(user => user.cardNumber === cardNumber);
+
+            if (indexOfUserToRemove !== -1) {
+                // Rimuovi lo studente dall'array
+                users.splice(indexOfUserToRemove, 1);
+
+                // Aggiorna la lista degli studenti
+                renderUserList(users);
+
+                // Salva l'array aggiornato nella localStorage
+                saveUserListToLocalStorage(users);
+            }
+        }
+    }
+
+    // Aggiungi un gestore di eventi alla lista degli studenti per gestire il click sul pulsante "Remove"
+    userItems.addEventListener('click', handleRemoveButtonClick);
+    
+    // Trova il pulsante "Remove All" nell'HTML
+    const removeAllButton = document.getElementById('remove-all-button');
+
+    // Aggiungi un gestore di eventi per il clic sul pulsante
+    removeAllButton.addEventListener('click', () => {
+        users = [];        
+        renderUserList(users);        
+        saveUserListToLocalStorage(users);
+    });
 
 
 
