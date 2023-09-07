@@ -113,6 +113,17 @@ body, html {
     max-width: 100%;
 }
 
+/* Stilizza il div per il pulsante "Remove All" */
+.remove-all-students {
+    text-align: right; /* Allinea il testo a destra */
+    margin-right: 10px; /* Aggiungi uno spazio tra il titolo e il pulsante */
+}
+
+/* Stilizza il pulsante "Remove All" */
+#remove-all-button {
+    padding: 5px 10px; /* Aggiungi spaziatura interna al pulsante (personalizzabile) */
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+}
 
 
 /* CSS per il menu a tendina del botton + */

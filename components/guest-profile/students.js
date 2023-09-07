@@ -318,7 +318,6 @@ document.addEventListener('DOMContentLoaded', function () {
         saveStudentListToLocalStorage(students);
     });
 
-    // ...
     // Gestore di eventi per il click sul pulsante "Remove"
     function handleRemoveButtonClick(event) {
         if (event.target.classList.contains('remove-button')) {
@@ -342,9 +341,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Aggiungi un gestore di eventi alla lista degli studenti per gestire il click sul pulsante "Remove"
     studentItems.addEventListener('click', handleRemoveButtonClick);
-    // ...
+    
+    // Trova il pulsante "Remove All" nell'HTML
+    const removeAllButton = document.getElementById('remove-all-button');
 
-
+    // Aggiungi un gestore di eventi per il clic sul pulsante
+    removeAllButton.addEventListener('click', () => {
+        students = [];        
+        renderStudentList(students);        
+        saveStudentListToLocalStorage(students);
+    });
 
 
 
