@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
             documentType: editedDocumentType,
             numberDoc: editedNumberDoc,
             expirationDate: editedExpirationDate,
-            issuedBy: editedIssuedBy,
+            issuedBy: editedIssuedBy
         };
 
         // Sovrascrivi lo studente modificato nell'array "students"
