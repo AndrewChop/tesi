@@ -119,6 +119,16 @@ body, html {
     cursor: pointer;
 }
 
+.sort-by-date {
+    text-align: right; 
+    margin-right: 10px; 
+}
+
+#sort-by-date-button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
 /* CSS per il menu a tendina del botton + */
 .add-menu {
     position: fixed;

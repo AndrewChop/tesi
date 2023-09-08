@@ -259,6 +259,33 @@ document.addEventListener('DOMContentLoaded', function () {
         saveEventListToLocalStorage(events);
     });
 
+    // Trova il pulsante "Sort by Date" nell'HTML
+    const sortByDateButton = document.getElementById('sort-by-date-button');
+
+    // Variabile per tenere traccia dello stato di ordinamento (inizio con ascendente)
+    let isSortedAscending = true;
+
+    // Aggiungi un gestore di eventi per il clic sul pulsante
+    sortByDateButton.addEventListener('click', () => {
+        if (isSortedAscending) {
+            // Ordina gli eventi per data in ordine crescente
+            events.sort((a, b) => new Date(a.date) - new Date(b.date));
+        } else {
+            // Ordina gli eventi per data in ordine decrescente
+            events.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+
+        // Inverti lo stato di ordinamento
+        isSortedAscending = !isSortedAscending;
+
+        // Aggiorna la lista degli eventi ordinata
+        renderEventList(events);
+    });
+
+
+
+
+
 
 
     const addButton = document.querySelector('.add-button');

@@ -26,9 +26,15 @@
 
     <div id="events-list" class="events-list">
         <h3>List of events</h3>
+        
+        <!-- vorrei creare un contenitore per inserire sia remove che sort sulla stessa linea-->
         <div class="remove-all-events">
             <button id="remove-all-button">Remove All</button>
         </div>
+        <div class="sort-by-date">
+            <button id="sort-by-date-button">Sort by Date</button>
+        </div>
+        
         <ul id="event-items" class="event-items">
             <li>
                 <span>${event.name} ${event.place}</span>
