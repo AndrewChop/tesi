@@ -20,13 +20,16 @@
 </head>
 <body>
     <div class="search-bar">
+        <a href="..\..\pages\homepage.html">
+            <img class="logo" src="..\..\assets\icons\logo.png" alt="Logo">
+        </a>
         <input type="text" id="search-input" placeholder="Search for...">
         <button id="search-button">Search</button>
     </div>
 
     <div id="events-list" class="events-list">
         <h3>List of events</h3>
-        
+
         <!-- vorrei creare un contenitore per inserire sia remove che sort sulla stessa linea-->
         <div class="remove-all-events">
             <button id="remove-all-button">Remove All</button>
@@ -70,7 +73,7 @@
                     <input type="time" id="event-time" class="objective-data-input">
 
                     <label for="event-description">Description:</label>
-                    <input type="textarea" id="event-description" class="objective-data-input">
+                    <textarea id="event-description" class="objective-data-input"></textarea>
                     
                     <label for="event-price">Price:</label>
                     <input type="text" id="event-price" class="objective-data-input">
@@ -107,7 +110,7 @@
                     <input type="time" id="edit-time" class="objective-data-input">
 
                     <label for="edit-event-description">Description:</label>
-                    <input type="textarea" id="edit-description" class="objective-data-input">
+                    <textarea id="event-description" class="objective-data-input"></textarea>
 
                     <label for="edit-event-price">Price:</label>
                     <input type="text" id="edit-price" class="objective-data-input">

@@ -38,6 +38,12 @@ body, html {
     cursor: pointer;
 }
 
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
 /* Stile della lista degli utenti */
 .student-list {
     width: 100%;

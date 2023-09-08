@@ -30,6 +30,12 @@ body, html {
     padding: 5px;
 }
 
+.logo {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+
 .edit-profile-header {
     width: 1000%;
     max-width: 1480px; 
@@ -37,7 +43,9 @@ body, html {
     background-color: #4e73df; 
     color: white;
     font-weight: bolder;
-    text-align: center;
+    font-size: 16px;
+    display: flex;
+    text-align: left;
 }
 
 .edit-profile-container {
