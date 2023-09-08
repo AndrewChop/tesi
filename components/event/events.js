@@ -125,9 +125,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         eventList.forEach(event => {
             const eventItem = document.createElement('li');
+            const formattedDate = formatDateToItalian(event.date);
             eventItem.innerHTML = `
                 <span>${event.name} ${event.place}</span>
-                <span>${event.date}</span>
+                <span>${formattedDate}</span>
                 <button class="edit-button" data-name="${event.name}">Edit</button>
                 <button class="remove-button" data-name="${event.name}">Remove</button>
             `;
@@ -282,7 +283,11 @@ document.addEventListener('DOMContentLoaded', function () {
         renderEventList(events);
     });
 
-
+    function formatDateToItalian(dateString) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('it-IT', options);
+    }
+    
 
 
 
