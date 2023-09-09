@@ -40,10 +40,11 @@
         
         <ul id="event-items" class="event-items">
             <li>
+                <span>${event.code}</span>
                 <span>${event.name} ${event.place}</span>
                 <span>${event.date}</span>
-                <button class="edit-button" data-name="${event.name}">Edit</button>
-                <button class="remove-button" data-name="${event.name}">Remove</button>
+                <button class="edit-button" data-code="${event.code}">Edit</button>
+                <button class="remove-button" data-code="${event.code}">Remove</button>
             </li>
         </ul>
     </div>
@@ -57,7 +58,10 @@
         <div class="edit-event-container">
             <div class="edit-event-content">
                 <form class="objective-data-form">
-                    <label for="event-name">Event name:</label>
+                    <label for="event-code">Code:</label>
+                    <input type="number" id="event-code" min="1" class="objective-data-input">
+
+                    <label for="event-name">Name:</label>
                     <input type="text" id="event-name" class="objective-data-input">
 
                     <label for="event-place">Place:</label>
@@ -103,7 +107,10 @@
         </div>
         <div class="edit-event-container">
             <div class="edit-event-content">
-                <form class="objective-data-form">
+                <form class="objective-data-form">                    
+                    <label for="edit-event-code">Code:</label>
+                    <input type="number" id="edit-code" min="1" class="objective-data-input">
+
                     <label for="edit-event-name">Event name:</label>
                     <input type="text" id="edit-name" class="objective-data-input">
 

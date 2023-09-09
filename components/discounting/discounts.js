@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('filterDiscounts IN', query, discounts); // @mc console.log per debugging di esempio
         // @mc qua facevi filtro su "events", ma non l'avevi mai inizializzato
         const filteredDiscounts = discounts.filter(discount => {
-            const fullDetail = `${discount.name} ${discount.type}`;
-            return fullDetail.toLowerCase().includes(query.toLowerCase()) || discount.name.toLowerCase().includes(query.toLowerCase());
+            const discountDetail = `${discount.name} ${discount.type}`;
+            return discountDetail.toLowerCase().includes(query.toLowerCase()) || discount.code.toLowerCase().includes(query.toLowerCase());
         });
         console.log('filterDiscounts OUT', filteredDiscounts); // @mc console.log per debugging di esempio
         renderDiscountList(filteredDiscounts);
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Pulsante per confermare l'aggiunta dell'evento
     const confirmAddDiscountButton = document.getElementById('confirm-discount');
     confirmAddDiscountButton.addEventListener('click', () => {
+        const discountCode = document.getElementById('discount-code').value.trim();
         const discountName = document.getElementById('discount-name').value.trim();
         const discountType = document.getElementById('discount-type').value.trim();
         const discountRate = document.getElementById('discount-rate').value.trim();
@@ -59,8 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const discountDescription = document.getElementById('discount-description').value.trim();
         const discountLink = document.getElementById('discount-link').value.trim();
         
-        if (discountName && discountType && discountRate && discountDate && discountDescription && discountLink) {
+        if (discountCode && discountName && discountType && discountRate && discountDate && discountDescription && discountLink) {
             const newDiscount = {
+                code: discountCode,
                 name: discountName,
                 type: discountType,
                 rate: discountRate,
@@ -81,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funzione per reimpostare i valori dei campi del form
     function resetDiscountFormFields() {
+        const discountCode = document.getElementById('discount-code');
         const discountName = document.getElementById('discount-name');
         const discountType = document.getElementById('discount-type');
         const discountRate = document.getElementById('discount-rate');
@@ -89,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const discountLink = document.getElementById('discount-link');
         
         // Reimposta i valori dei campi del form a stringa vuota
+        discountCode.value = '';
         discountName.value = '';
         discountType.value = '';
         discountRate.value = '';
@@ -116,9 +120,10 @@ document.addEventListener('DOMContentLoaded', function () {
         discountList.forEach(discount => {
             const discountItem = document.createElement('li');
             discountItem.innerHTML = `
+                <span>${discount.code}</span>
                 <span>${discount.name} ${discount.type}</span>
-                <button class="edit-button" data-name="${discount.name}">Edit</button>
-                <button class="remove-button" data-name="${discount.name}">Remove</button>
+                <button class="edit-button" data-code="${discount.code}">Edit</button>
+                <button class="remove-button" data-code="${discount.code}">Remove</button>
             `;
             discountItems.appendChild(discountItem);
         });
@@ -133,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Funzione per popolare il form di modifica con i dettagli dello evento selezionato
     function populateEditForm(discount) {
+        const editCode = document.getElementById('edit-code');
         const editName = document.getElementById('edit-name');
         const editType = document.getElementById('edit-type');
         const editRate = document.getElementById('edit-rate');
@@ -140,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const editDescription = document.getElementById('edit-description');
         const editLink = document.getElementById('edit-link');
 
+        editCode.value = discount.code;    
         editName.value = discount.name;
         editType.value = discount.type;
         editRate.value = discount.rate;
@@ -154,9 +161,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestore di eventi per il click sul pulsante "Edit"
     function handleDiscountItemClick(discount) {
         if (discount.target.classList.contains('edit-button')) {
-            const name = discount.target.getAttribute('data-name');
+            const code = discount.target.getAttribute('data-code');
 
-            const discountToEdit = discounts.find(discount => discount.name === name);
+            const discountToEdit = discounts.find(discount => discount.code === code);
             
             if (discountToEdit) {
                 populateEditForm(discountToEdit);
@@ -172,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const saveEditButton = document.getElementById('save-edit-button');
     saveEditButton.addEventListener('click', () => {
         // Ottieni i dettagli modificati dallo evento nel form di modifica
+        const editedCode = document.getElementById('edit-code').value.trim();
         const editedName = document.getElementById('edit-name').value.trim();
         const editedType = document.getElementById('edit-type').value.trim();
         const editedRate = document.getElementById('edit-rate').value.trim();
@@ -181,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Crea un oggetto utente con i dettagli modificati
         const editedDiscount = {
+            code: editedCode,
             name: editedName,
             type: editedType,
             rate: editedRate,
@@ -191,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Sovrascrivi lo evento modificato nell'array "events"
         // @mc qui "eventIndex" era inesistente (la console ti segnalava un errore); ho usato il cardNumber come ID per identificare l'utente
-        const indexOfDiscountToEdit = discounts.findIndex(x => x.name === editedDiscount.name);
+        const indexOfDiscountToEdit = discounts.findIndex(x => x.code === editedDiscount.code);
         if(indexOfDiscountToEdit !== -1) discounts[indexOfDiscountToEdit] = editedDiscount;
 
         // Chiudi il form di modifica
@@ -208,10 +217,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestore di eventi per il click sul pulsante "Remove"
     function handleRemoveButtonClick(discount) {
         if (discount.target.classList.contains('remove-button')) {
-            const name = discount.target.getAttribute('data-name');
+            const code = event.target.getAttribute('data-code');
 
             // Trova l'indice dello evento da rimuovere nell'array "events"
-            const indexOfDiscountToRemove = discounts.findIndex(discount => discount.name === name);
+            const indexOfDiscountToRemove = discounts.findIndex(discount => discount.code === code);
 
             if (indexOfDiscountToRemove !== -1) {
                 // Rimuovi lo evento dall'array

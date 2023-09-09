@@ -7,13 +7,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // Lista degli eventi
     let events = [];
 
+    
+    function formatDateToItalian(dateString) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('it-IT', options);
+    }
+    
     // Funzione per filtrare la lista degli eventi in base alla ricerca
     function filterEvents(query) {
         console.log('filterEvents IN', query, events); // @mc console.log per debugging di esempio
         // @mc qua facevi filtro su "events", ma non l'avevi mai inizializzato
-        const filteredEvents = events.filter(event => {
-            const fullDetail = `${event.name} ${event.place}`;
-            return fullDetail.toLowerCase().includes(query.toLowerCase()) || event.name.toLowerCase().includes(query.toLowerCase());
+        const filteredEvents = events.filter(event => {            
+            const formattedDate = formatDateToItalian(event.date);
+            const eventDetails = `${event.name} ${event.place} ${formattedDate}`;
+            return eventDetails.toLowerCase().includes(query.toLowerCase()) || event.code.toLowerCase().includes(query.toLowerCase());
         });
         console.log('filterEvents OUT', filteredEvents); // @mc console.log per debugging di esempio
         renderEventList(filteredEvents);
@@ -52,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Pulsante per confermare l'aggiunta dell'evento
     const confirmAddEventButton = document.getElementById('confirm-event');
     confirmAddEventButton.addEventListener('click', () => {
+        const eventCode = document.getElementById('event-code').value.trim();
         const eventName = document.getElementById('event-name').value.trim();
         const eventPlace = document.getElementById('event-place').value.trim();
         const eventAddress = document.getElementById('event-address').value.trim(); 
@@ -64,8 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        if (eventName && eventPlace && eventAddress && eventDate && eventTime && eventDescription && eventType && eventPrice && eventNumberParticipant) {
+        if (eventCode && eventName && eventPlace && eventAddress && eventDate && eventTime && eventDescription && eventType && eventPrice && eventNumberParticipant) {
             const newEvent = {
+                code: eventCode,
                 name: eventName,
                 place: eventPlace,
                 address: eventAddress,
@@ -89,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funzione per reimpostare i valori dei campi del form
     function resetEventFormFields() {
+        const eventCode = document.getElementById('event-code');
         const eventName = document.getElementById('event-name');
         const eventPlace = document.getElementById('event-place');
         const eventAddress = document.getElementById('event-address');
@@ -100,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const eventNumberParticipant = document.getElementById('event-number-participant');
 
         // Reimposta i valori dei campi del form a stringa vuota
+        eventCode.value = '';
         eventName.value = '';
         eventPlace.value = '';
         eventAddress.value = '';
@@ -131,10 +142,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const eventItem = document.createElement('li');
             const formattedDate = formatDateToItalian(event.date);
             eventItem.innerHTML = `
+                <span>${event.code}</span>
                 <span>${event.name} ${event.place}</span>
                 <span>${formattedDate}</span>
-                <button class="edit-button" data-name="${event.name}">Edit</button>
-                <button class="remove-button" data-name="${event.name}">Remove</button>
+                <button class="edit-button" data-code="${event.code}">Edit</button>
+                <button class="remove-button" data-code="${event.code}">Remove</button>
             `;
             eventItems.appendChild(eventItem);
         });
@@ -149,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Funzione per popolare il form di modifica con i dettagli dello evento selezionato
     function populateEditForm(event) {
-
+        const editCode = document.getElementById('edit-code');
         const editName = document.getElementById('edit-name');
         const editPlace = document.getElementById('edit-place');
         const editAddress = document.getElementById('edit-address');
@@ -160,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const editPrice = document.getElementById('edit-price');
         const editNumberParticipant = document.getElementById('edit-number-participant');
 
+        editCode.value = event.code;
         editName.value = event.name;
         editPlace.value = event.place;
         editAddress.value = event.address;
@@ -177,9 +190,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestore di eventi per il click sul pulsante "Edit"
     function handleEventItemClick(event) {
         if (event.target.classList.contains('edit-button')) {
-            const name = event.target.getAttribute('data-name');
+            const code = event.target.getAttribute('data-code');
 
-            const eventToEdit = events.find(event => event.name === name);
+            const eventToEdit = events.find(event => event.code === code);
             
             if (eventToEdit) {
                 populateEditForm(eventToEdit);
@@ -195,7 +208,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const saveEditButton = document.getElementById('save-edit-button');
     saveEditButton.addEventListener('click', () => {
         // Ottieni i dettagli modificati dallo evento nel form di modifica
-        const editedName = document.getElementById('edit-name').value.trim(); // @mc nota: se lo usi come ID per trovare un evento in una lista, non dovrebbe essere modificabile
+        const editedCode = document.getElementById('edit-code').value.trim();
+        const editedName = document.getElementById('edit-name').value.trim();
         const editedPlace = document.getElementById('edit-place').value.trim();
         const editedAddress = document.getElementById('edit-address').value.trim();
         const editedDate = document.getElementById('edit-date').value.trim();
@@ -207,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
        
         // Crea un oggetto utente con i dettagli modificati
         const editedEvent = {
+            code: editedCode,
             name: editedName,
             place: editedPlace,
             address: editedAddress,
@@ -237,10 +252,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestore di eventi per il click sul pulsante "Remove"
     function handleRemoveButtonClick(event) {
         if (event.target.classList.contains('remove-button')) {
-            const name = event.target.getAttribute('data-name');
+            const code = event.target.getAttribute('data-code');
 
             // Trova l'indice dello evento da rimuovere nell'array "events"
-            const indexOfEventToRemove = events.findIndex(event => event.name === name);
+            const indexOfEventToRemove = events.findIndex(event => event.code === code);
 
             if (indexOfEventToRemove !== -1) {
                 // Rimuovi lo evento dall'array
@@ -291,10 +306,6 @@ document.addEventListener('DOMContentLoaded', function () {
         renderEventList(events);
     });
 
-    function formatDateToItalian(dateString) {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString('it-IT', options);
-    }
     
 
 

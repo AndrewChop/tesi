@@ -37,9 +37,10 @@
         
         <ul id="discount-items" class="discount-items">
             <li>
+                <span>${discount.code}</span>
                 <span>${discount.name} ${discount.type}</span>
-                <button class="edit-button" data-name="${discount.name}">Edit</button>
-                <button class="remove-button" data-name="${discount.name}">Remove</button>
+                <button class="edit-button" data-code="${discount.code}">Edit</button>
+                <button class="remove-button" data-code="${discount.code}">Remove</button>
             </li>
         </ul>
     </div>
@@ -53,6 +54,9 @@
         <div class="edit-discount-container">
             <div class="edit-discount-content">
                 <form class="objective-data-form">
+
+                    <label for="discount-code">Code:</label>
+                    <input type="number" id="discount-code" class="objective-data-input">
                     
                     <label for="discount-name">Name:</label>
                     <input type="text" id="discount-name" class="objective-data-input">
@@ -85,6 +89,9 @@
         <div class="edit-discount-container">
             <div class="edit-discount-content">
                 <form class="objective-data-form">
+
+                    <label for="edit-code">Code:</label>
+                    <input type="number" id="edit-code" class="objective-data-input">
                     
                     <label for="edit-discount-name">Name:</label>
                     <input type="text" id="edit-name" class="objective-data-input">
