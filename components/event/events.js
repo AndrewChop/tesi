@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 description: eventDescription,
                 type: eventType,
                 price: eventPrice,
-                numberParticipant: eventNumberParticipant,
+                numberParticipant: eventNumberParticipant
             };
 
             addNewEvent(newEvent);
