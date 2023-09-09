@@ -124,6 +124,19 @@ textarea {
     max-width: 100%;
 }
 
+#confirm-event {
+    width: auto; 
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.save-button {
+    width: auto; 
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
 /* Stilizza il div per il pulsante "Remove All" */
 .remove-all-events {
     text-align: right; 

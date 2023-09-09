@@ -58,12 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const eventDate = document.getElementById('event-date').value.trim(); 
         const eventTime = document.getElementById('event-time').value.trim();
         const eventDescription = document.getElementById('event-description').value.trim();
+        const eventType = document.getElementById('event-type').value.trim();
         const eventPrice = document.getElementById('event-price').value.trim();
         const eventNumberParticipant = document.getElementById('event-number-participant').value.trim();
 
 
 
-        if (eventName && eventPlace && eventAddress && eventDate && eventTime && eventDescription && eventPrice && eventNumberParticipant) {
+        if (eventName && eventPlace && eventAddress && eventDate && eventTime && eventDescription && eventType && eventPrice && eventNumberParticipant) {
             const newEvent = {
                 name: eventName,
                 place: eventPlace,
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 date: eventDate,
                 time: eventTime,
                 description: eventDescription,
+                type: eventType,
                 price: eventPrice,
                 numberParticipant: eventNumberParticipant,
             };
@@ -93,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const eventDate = document.getElementById('event-date');
         const eventTime = document.getElementById('event-time');
         const eventDescription = document.getElementById('event-description');
+        const eventType = document.getElementById('event-type');
         const eventPrice = document.getElementById('event-price');
         const eventNumberParticipant = document.getElementById('event-number-participant');
 
@@ -103,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         eventDate.value = '';
         eventTime.value = '';
         eventDescription.value = '';
+        eventType.value = '';
         eventPrice.value = '';
         eventNumberParticipant.value = '';
     }
@@ -152,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const editDate = document.getElementById('edit-date');
         const editTime = document.getElementById('edit-time');
         const editDescription = document.getElementById('edit-description');
+        const editType = document.getElementById('edit-type');
         const editPrice = document.getElementById('edit-price');
         const editNumberParticipant = document.getElementById('edit-number-participant');
 
@@ -161,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
         editDate.value = event.date;
         editTime.value = event.time;
         editDescription.value = event.description;
+        editType.value = event.type;
         editPrice.value = event.price;
         editNumberParticipant.value = event.numberParticipant;
                 
@@ -195,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const editedDate = document.getElementById('edit-date').value.trim();
         const editedTime = document.getElementById('edit-time').value.trim();
         const editedDescription = document.getElementById('edit-description').value.trim();
+        const editedType = document.getElementById('edit-type').value.trim();
         const editedPrice = document.getElementById('edit-price').value.trim();
         const editedNumberParticipant = document.getElementById('edit-number-participant').value.trim();
        
@@ -206,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
             date: editedDate,
             time: editedTime,
             description: editedDescription,
+            type: editedType,
             price: editedPrice,
             numberParticipant: editedNumberParticipant
         };

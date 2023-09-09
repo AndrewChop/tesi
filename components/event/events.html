@@ -74,6 +74,16 @@
 
                     <label for="event-description">Description:</label>
                     <textarea id="event-description" class="objective-data-input"></textarea>
+
+                    <label for="event-type">Type</label>
+                    <select id="event-type">
+                        <option value="Culture">Culture</option>
+                        <option value="Social Inclusion">Social Inclusion</option>
+                        <option value="Education & Youth">Education & Youth</option>
+                        <option value="Health & Well-being">Health & Well-being</option>
+                        <option value="Skills & Employability">Skills & Employability</option>
+                        <option value="Environmental Sustainability">Environmental Sustainability</option>                     
+                    </select>
                     
                     <label for="event-price">Price:</label>
                     <input type="text" id="event-price" class="objective-data-input">
@@ -93,7 +103,7 @@
         </div>
         <div class="edit-event-container">
             <div class="edit-event-content">
-                <form class="personal-data-form">
+                <form class="objective-data-form">
                     <label for="edit-event-name">Event name:</label>
                     <input type="text" id="edit-name" class="objective-data-input">
 
@@ -110,7 +120,17 @@
                     <input type="time" id="edit-time" class="objective-data-input">
 
                     <label for="edit-event-description">Description:</label>
-                    <textarea id="event-description" class="objective-data-input"></textarea>
+                    <textarea id="edit-description" class="objective-data-input"></textarea>
+
+                    <label for="edit-event-type">Type</label>
+                    <select id="edit-type">
+                        <option value="Culture">Culture</option>
+                        <option value="Social Inclusion">Social Inclusion</option>
+                        <option value="Education & Youth">Education & Youth</option>
+                        <option value="Health & Well-being">Health & Well-being</option>
+                        <option value="Skills & Employability">Skills & Employability</option>
+                        <option value="Environmental Sustainability">Environmental Sustainability</option>                     
+                    </select>
 
                     <label for="edit-event-price">Price:</label>
                     <input type="text" id="edit-price" class="objective-data-input">
@@ -118,7 +138,7 @@
                     <label for="edit-event-number-participant">Number participants:</label>
                     <input type="text" id="edit-number-participant" class="objective-data-input">
         
-                    <button type="button" id="save-edit-button">Save</button>
+                    <button type="button" id="save-edit-button" class="save-button">Save</button>
                 </form>
             </div>
         </div>

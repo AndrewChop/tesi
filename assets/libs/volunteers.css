@@ -122,6 +122,18 @@ body, html {
     max-width: 100%;
 }
 
+#confirm-user {
+    width: auto; 
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#save-edit-button {
+    width: auto; 
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
 /* Stilizza il div per il pulsante "Remove All" */
 .remove-all-volunteers {
     text-align: right; /* Allinea il testo a destra */
