@@ -7,19 +7,10 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-label {
-    display: block;
-}
-
-textarea {
     width: 100vw;
-    min-height: 100px; 
-    resize: vertical;
+    height: 100%;
 }
-    
+  
 /* Stile della barra di ricerca */
 .search-bar {
     display: flex;
@@ -53,70 +44,41 @@ textarea {
     margin-right: 20px;
 }
 
-.events-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-}
-
-.events-list h3 {
+/* Stile della lista degli utenti */
+.user-list {
+    width: 100%;
+    padding: 20px; 
+    background-color: white; 
+    color: black;
+    font-size: 16px;
+    font-family: Roboto;
     text-align: left;
 }
-
-.remove-all-events {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.sort-by-date {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-#remove-all-button,
-#sort-by-date-button {
-    margin-left: 10px;
-}
-
-.event-items {
+  
+/* Stile degli elementi utente */
+.user-items {
     list-style-type: none;
     padding: 0;
-    width: 100%;
 }
-
-.event-items li {
+  
+.user-item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 5px 0;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
 }
-
-.event-items li span {
-    flex: 1;
-}
-
-.edit-button,
-.remove-button {
-    margin-left: 10px;
+  
+.edit-icon {
+    cursor: pointer;
 }
 
 .hidden {
     display: none;
 }
 
-/* Stile del form per l'aggiunta di uno studente */
-.objective-data-form {
+/* Stile del form per l'aggiunta di un volontario */
+.personal-data-form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -126,13 +88,14 @@ textarea {
     padding: 20px;  
 }
 
-.objective-data-input {
+.personal-data-input {
     width: 95%;
     padding: 5px;
     margin-bottom: 20px;
 }
 
-.edit-event-header {
+
+.edit-profile-header {
     width: 100vw; 
     padding: 20px; 
     background-color: #4e73df; 
@@ -142,7 +105,7 @@ textarea {
     text-align: left;
 }
 
-.edit-event-container {
+.edit-profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,23 +117,34 @@ textarea {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.edit-event-content {
+.edit-profile-content {
     width: 100vw;
     max-width: 100%;
 }
 
-#confirm-event {
+#confirm-user {
     width: auto; 
     padding: 5px 10px;
     cursor: pointer;
 }
 
-.save-button {
+#save-edit-button {
     width: auto; 
     padding: 5px 10px;
     cursor: pointer;
 }
 
+/* Stilizza il div per il pulsante "Remove All" */
+.remove-all-volunteers {
+    text-align: right; /* Allinea il testo a destra */
+    margin-right: 10px; /* Aggiungi uno spazio tra il titolo e il pulsante */
+}
+
+/* Stilizza il pulsante "Remove All" */
+#remove-all-button {
+    padding: 5px 10px; /* Aggiungi spaziatura interna al pulsante (personalizzabile) */
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+}
 
 
 
@@ -214,3 +188,5 @@ textarea {
     cursor: pointer;
     font-weight: bolder;
 }
+
+  

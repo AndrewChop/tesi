@@ -7,8 +7,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100%;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 label {
@@ -54,26 +53,62 @@ textarea {
     margin-right: 20px;
 }
 
-/* Stile della lista degli utenti */
 .discounts-list {
-    width: 100%;
-    padding: 20px; 
-    background-color: white; 
-    color: black;
-    font-size: 16px;
-    font-family: Roboto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.discounts-list h3 {
     text-align: left;
 }
 
-/* Stile degli elementi utente */
+.remove-all-discounts {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.sort-by-date {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#remove-all-button,
+#sort-by-date-button {
+    margin-left: 10px;
+}
+
 .discount-items {
     list-style-type: none;
     padding: 0;
-    /*display: flex;
-    justify-content: space-between;
+    width: 100%;
+}
+
+.discount-items li {
+    display: flex;
     align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;*/
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+.discount-items li span {
+    flex: 1;
+}
+
+.edit-button,
+.remove-button {
+    margin-left: 10px;
 }
 
 .hidden {
@@ -137,26 +172,7 @@ textarea {
 }
 
 
-/* Stilizza il div per il pulsante "Remove All" */
-.remove-all-discounts {
-    text-align: right; 
-    margin-right: 10px; 
-}
 
-#remove-all-button {
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.sort-by-date {
-    text-align: right; 
-    margin-right: 10px; 
-}
-
-#sort-by-date-button {
-    padding: 5px 10px;
-    cursor: pointer;
-}
 
 /* CSS per il menu a tendina del botton + */
 .add-menu {
@@ -194,7 +210,7 @@ textarea {
     margin: 5px 0;
     background-color: transparent;
     border: none;
-    color: black;
+    color: white;
     cursor: pointer;
     font-weight: bolder;
 }
