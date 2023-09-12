@@ -121,7 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const discountItem = document.createElement('li');
             discountItem.innerHTML = `
                 <span>${discount.code}</span>
-                <span>${discount.name} ${discount.type}</span>
+                <span>${discount.name}</span>
+                <span>${discount.type}</span>
+                <span>${discount.rate}%</span>
                 <button class="edit-button" data-code="${discount.code}">Edit</button>
                 <button class="remove-button" data-code="${discount.code}">Remove</button>
             `;
@@ -200,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Sovrascrivi lo evento modificato nell'array "events"
         // @mc qui "eventIndex" era inesistente (la console ti segnalava un errore); ho usato il cardNumber come ID per identificare l'utente
-        const indexOfDiscountToEdit = discounts.findIndex(x => x.code === editedDiscount.code);
+        const indexOfDiscountToEdit = discounts.findIndex(x => x.code === editedDiscount.name);
         if(indexOfDiscountToEdit !== -1) discounts[indexOfDiscountToEdit] = editedDiscount;
 
         // Chiudi il form di modifica
@@ -216,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gestore di eventi per il click sul pulsante "Remove"
     function handleRemoveButtonClick(discount) {
-        if (discount.target.classList.contains('remove-button')) {
+        if (event.target.classList.contains('remove-button')) {
             const code = event.target.getAttribute('data-code');
 
             // Trova l'indice dello evento da rimuovere nell'array "events"

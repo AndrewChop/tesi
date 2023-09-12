@@ -38,12 +38,17 @@
             <button id="sort-by-date-button">Sort by Date</button>
         </div>
 
-        <div id="transaction-total">Totale: €0.00</div>
+        <div id="transaction-totals" class="transaction-totals">
+            <div id="total-in">Total In: €0.00</div>
+            <div id="total-out">Total Out: €0.00</div>
+            <div id="net-total">Net Total: €0.00</div>
+        </div>
         
         <ul id="transaction-items" class="transaction-items">
-            <li>
+            <li>           
                 <span>${transaction.code}</span>
-                <span>${transaction.name} ${transaction.cash} (${transaction.type === 'in' ? 'in' : 'out'})</span>
+                <span>${transaction.name}</span>
+                <span>${transaction.cash}€</span>
                 <button class="edit-button" data-code="${transaction.code}">Edit</button>
                 <button class="remove-button" data-code="${transaction.code}">Remove</button>
             </li>
@@ -66,14 +71,17 @@
                     <label for="transaction-name">Name:</label>
                     <input type="text" id="transaction-name" class="objective-data-input">
 
-                    <label for="transaction-type">Type</label>
-                    <input type="radio" id="transaction-type" name="transaction-type" value="in">Incoming
-                    <input type="radio" id="transaction-type" name="transaction-type" value="out">Outgoing
+                    <label for="transaction-type">Type:</label>
+                    <select id="transaction-type">
+                        <option value="none"> </option>
+                        <option value="IN">Incoming</option>                        
+                        <option value="OUT">Outgoing</option>                 
+                    </select>
 
                     <label for="transaction-cash">Amount in €:</label>
                     <input type="number" id="transaction-cash" class="objective-data-input">
 
-                    <label for="transaction-category">Category</label>
+                    <label for="transaction-category">Category:</label>
                     <select id="transaction-category">
                         <option value="Event">Event</option>                        
                         <option value="Office">Office</option>
@@ -83,7 +91,7 @@
                         <option value="Other">Other</option>                     
                     </select>
 
-                    <label for="transaction-channel">Channel</label>
+                    <label for="transaction-channel">Channel:</label>
                     <select id="transaction-channel">
                         <option value="Cash">Cash</option>
                         <option value="Bank transfer">Bank transfer</option>
@@ -117,9 +125,12 @@
                     <label for="edit-transaction-name">Name:</label>
                     <input type="text" id="edit-name" class="objective-data-input">
 
-                    <label for="edit-transaction-type">Type</label>
-                    <input type="radio" id="edit-type" name="transaction-type" value="in">Incoming
-                    <input type="radio" id="edit-type" name="transaction-type" value="out">Outgoing
+                    <label for="edit-transaction-type">Type:</label>
+                    <select id="edit-type">
+                        <option value="none"> </option>
+                        <option value="IN">Incoming</option>                        
+                        <option value="OUT">Outgoing</option>                 
+                    </select>
 
                     <label for="edit-transaction-cash">Amount in €:</label>
                     <input type="number" id="edit-cash" class="objective-data-input">

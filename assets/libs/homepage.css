@@ -1,247 +1,212 @@
-/* CSS of Home Page */
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html {
-  font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-  display: block;
-}
-
+/* Reset del margine e del padding del corpo della pagina */
 body {
     margin: 0;
-    height: 100vh;
+    padding: 0;
+    background-color: #4e73df;
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #414147;
-    text-align: left;
-    background-color: #fff;
 }
 
-hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
+/* Imposta il contenitore principale come un flex container con orientamento verticale */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-  
-h1, h2, h3, h4, h5, h6 {
+
+/* Barra superiore con il profilo utente */
+.topbar {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    position: absolute;
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #4e73df;
+    padding: 10px;
 }
 
-p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-a {
+/* Link del profilo utente */
+.profile-link {
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
     color: white;
+    font-weight: bold;
+}
+
+/* Immagine del profilo */
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    margin: 10px; 
+    cursor: pointer; 
+}
+
+
+/* Menu a tendina del profilo utente */
+.dropdown-content {
+    display: none; 
+    position: absolute; 
+    background-color: #4e73df;
+    min-width: 100px;
+    top: 70px;
+    right: 0;
+    border-radius: 5px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 5px 0px 5px 0px;
+}
+
+
+/* Mostra il menu a tendina quando si passa il mouse sopra .profile-link */
+.profile-link:hover .dropdown-content {
+    display: block;
+}
+
+/* Stile della lista del menu a tendina */
+.profile-dropdown ul {
+    list-style: none; /* Rimuove i punti elenco */
+    padding: 0; 
+    margin: 0;
+}
+
+/* Stile degli elementi della lista del menu a tendina */
+.profile-dropdown li {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Stile dei link nel menu a tendina */
+.profile-dropdown a {
     text-decoration: none;
-    background-color: transparent;
+    color: white;
+    display: block;
 }
 
-a:hover {
-    color: #224abe;
-    text-decoration: underline;
-}
 
-.background {
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
+
+/* Contenuto principale */
+.main-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    z-index: 0;
+    flex-grow: 1;
 }
 
-.logo {
-    width: 40px;
-    height: 40px;
+/* Contenitore dei pulsanti principali */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-
-/* SIDEBAR */
-
-.navbar-nav {
+/* Pulsanti principali */
+.main-button {
+    background-color: #4e73df;
+    color: white;
+    border: none;
+    padding: 40px;
+    margin: 20px;
+    font-size: 20px;  
     display: flex;
     flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-}
-
-.nav-link {
-    display: block;
-    padding: 0.5rem 1rem;
-}
-  
-.nav-link:hover, .nav-link:focus {
-    text-decoration: none;
-}
-
-.nav-link {
-    display: block;
-    padding: 0.5rem 1rem;
-}
-  
-.nav-link:hover, .nav-link:focus {
-    text-decoration: none;
-}
-
-.bg-gradient-primary {
-    background-color: #4e73df;
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-    background-size: cover;
-}
-
-.sidebar {
-    width: 100px;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.accordion {
-    overflow-anchor: none;
-}
-
-.sidebar .sidebar-brand {
-    height: 4.375rem;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 800;
-    padding: 1.5rem 1rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-    z-index: 1;
-}
-
-.sidebar .sidebar-brand .sidebar-brand-icon i {
-    font-size: 2rem;
-}
-  
-.sidebar .sidebar-brand .sidebar-brand-text {
-    display: none;
-}
-
-.sidebar hr.sidebar-divider {
-    margin: 0 1rem 1rem;
-}
-
-.sidebar .sidebar-heading {
-    text-align: center;
-    padding: 0 1rem;
-    font-weight: 800;
-    font-size: 0.65rem;
-}
-
-.d-flex {
-    display: flex !important;
-}
-
-.align-items-center {
-    align-items: center !important;
-}
-
-.justify-content-center {
-    justify-content: center !important;
-}
-
-
-
-
-
-
-/* TOPBAR */
-
-.topbar {
-    display: flex;
-    justify-content: flex-end; /* Allinea gli elementi a destra */
-    align-items: center; /* Allinea verticalmente al centro */
-    position: absolute; /* Posizionamento fisso per la barra superiore */
-    margin-top: 0;
-    top: 0; /* Allineamento in alto */
-    left: 100px; /* Allineamento a destra della barra laterale */
-    width: calc(100% - 100px); /* Larghezza calcolata per il contenuto principale */
-    background-color: white; /* Sostituire con il colore desiderato */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombra per la barra superiore */
-    height: 50px; /* Altezza desiderata per la barra superiore */
-    z-index: 100; /* Z-index per sovrapporre la barra superiore alla barra laterale */
-}
-
-.topbar .nav-link .img-profile {
-    height: 2rem;
-    width: 2rem;
-    display: flex;
     align-items: center;
+    position: relative;
+    transition: background-color 0.3s;
 }
 
-.rounded-circle {
-    border-radius: 50% !important;
+/* Icona all'interno del pulsante */
+.main-button i {
+    font-size: 100px; 
+    margin-bottom: 20px;
 }
 
-.mr-2,
-.mx-2 {
-  margin-right: 0.5rem !important;
+/* Testo all'interno del pulsante */
+.main-button span {
+    font-weight: bold; 
+    font-size: 24px;
 }
 
-.text-gray-600 {
-    color: #000000 !important;
+/* Mostra il menu a tendina quando si passa il mouse sopra il pulsante */
+.main-button:hover .dropdown-content {
+    display: block;
 }
 
-.small {
-    font-size: 80%;
-    font-weight: 400;
+/* Stile del menu a tendina */
+.main-button .dropdown-content {
+    display: none; 
+    position: absolute; 
+    background-color: #4e73df; 
+    min-width: 150px; 
+    top: 90%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
 }
 
-.topbar .nav-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    font-family: "Nunito";
-    font-size: 80%;
-    font-weight: 400;
-  }
-  
-.dropdown-content ul {
+/* Stile della lista del menu a tendina */
+.main-button .dropdown-content ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
-  
-.dropdown-content li {
-    padding: 8px;
+
+/* Stile degli elementi della lista del menu a tendina */
+.main-button .dropdown-content li {
+    padding: 10px;
 }
-  
-.dropdown-content a {
+
+/* Stile dei link nel menu a tendina */
+.main-button .dropdown-content a {
+    color: white;
+    display: block;
+    padding: 5px;
     text-decoration: none;
-    color: black;
-    display: block;
 }
-  
-.nav-item:hover .dropdown-content {
-    display: block;
+
+/* Media query per schermi più piccoli*/
+@media (max-width: 768px) {
+    .main-button {
+        font-size: 16px;
+        padding: 30px;
+    }
+
+    .main-button i {
+        font-size: 80px;
+        margin-bottom: 10px;
+    }
+
+    .main-button span {
+        font-size: 18px;
+    }
+
+    .main-button .dropdown-content {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-button {
+        font-size: 14px;
+        padding: 20px;
+    }
+
+    .main-button i {
+        font-size: 60px;
+        margin-bottom: 5px;
+    }
+
+    .main-button span {
+        font-size: 16px;
+    }
+
+    .main-button .dropdown-content {
+        min-width: 100px;
+    }
 }

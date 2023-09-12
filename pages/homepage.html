@@ -11,7 +11,6 @@
     <meta name="msapplication-tap-highlight" content="no"/>
 
     <link rel="icon" type="image/x-icon" href="..\assets\icons\favicon.ico">
-    <!-- <meta name="theme-color" content="#4e8ef7"/> Controllare questo comando per barra in alto-->
 
     <!-- Libs -->
     <link rel="stylesheet" href="..\assets\libs\homepage.css" />
@@ -20,125 +19,70 @@
 
 </head>
 <body>
-
-
-    <!-- Barra laterale -->
-
-    <ul class="navbar-nav bg-gradient-primary sidebar accordion toggled" id="accordionSidebar">
-
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center">
-            <img class="logo" src="..\assets\icons\logo.png" alt="Logo">
-            <div class="sidebar-brand-text mx-3">SWEN</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Nav Item - Dashboard -->
-        <a class="nav-link" href="homepage.html">
-            <h4>Home</h4>
-        </a>        
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            <h3>USERS</h3>
-        </div>
-
-        <!-- Nav Item - Users -->
-        <a class="nav-link" href="..\components\guest-profile\volunteers.html">
-            <h5>Volunteers</h5>
-        </a>
-        <a class="nav-link" href="..\components\guest-profile\students.html">
-            <h5>Students</h5>
-        </a>           
-       
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            <h3>PROJECTS</h3>            
-        </div>
-
-        <!-- Nav Item - Events -->
-        <a class="nav-link" href="..\components\event\events.html">
-            <h5>Events</h5>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            <h3>TREASURY</h3>            
-        </div>
-
-        <!-- Nav Item - Events -->
-        <a class="nav-link" href="..\components\treasury\transactions.html">
-            <h5>Transactions</h5>
-        </a>
-        
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            <h3>FACILITIES</h3>            
-        </div>
-
-        <!-- Nav Item - Events -->
-        <a class="nav-link" href="..\components\discounting\discounts.html">
-            <h5>Discounts</h5>
-        </a>
-
-
-        
-       
-
-    </ul>
-
-    <ul class="topbar">
-        <li class="nav-item">
-            <a class="nav-link" href="#" id="userProfile" role="button">
-                <span class="mr-2 text-gray-600 small">Andrea Amaranto</span>
-                <img class="img-profile rounded-circle"
-                    src="..\assets\profile\profile.jpg">
-            </a>
-            <div class="dropdown-content">
-                <ul>
-                    <li>
-                        <a href="..\components\user-profile\profile.html" id="profileLink">
-                            <i class="fas fa-user mr-2"></i> Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../index.html" id="logoutLink">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                        </a>
-                    </li>
-                </ul>
+    <div class="container">
+        <div class="topbar">
+            <div class="profile-link" id="userProfile">
+                <img class="profile-image" src="..\assets\profile\profile.jpg" alt="Profile">
+                <div class="dropdown-content">
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li>
+                                <a href="..\components\user-profile\profile.html" id="profileLink">
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../index.html" id="logoutLink">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </li>
-    </ul>
-
-
-
-    
-    
-
-
-
-
-
-
-
-
-
+        </div>
+        <div class="main-content">
+            <div class="button-container">
+                <button class="main-button" id="usersButton">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="..\components\guest-profile\volunteers.html">Volunteers</a></li>
+                            <li><a href="..\components\guest-profile\students.html">Students</a></li>
+                        </ul>
+                    </div>
+                </button>
+                <button class="main-button" id="projectsButton">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="..\components\event\events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </button>
+                <button class="main-button" id="treasuryButton">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Treasury</span>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="..\components\treasury\transactions.html">Transactions</a></li>
+                        </ul>
+                    </div>
+                </button>
+                <button class="main-button" id="facilitiesButton">
+                    <i class="fas fa-store"></i>
+                    <span>Facilities</span>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="..\components\discounting\discounts.html">Discounts</a></li>
+                        </ul>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 

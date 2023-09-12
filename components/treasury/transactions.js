@@ -62,7 +62,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const transactionNote = document.getElementById('transaction-note').value.trim();
         
         
-        if (transactionCode && transactionName && transactionType && transactionCash && transactionCategory && transactionChannel && transactionDate && transactionNote) {
+    // Verifica se il codice della transazione esiste già
+    const isCodeExists = transactions.some(transaction => transaction.code === transactionCode);
+
+        if (isCodeExists) {
+            const confirmation = confirm('Il codice della transazione esiste già. Vuoi reinserire i dati?');
+            
+            if (confirmation) {
+                // L'utente ha confermato di voler reinserire i dati
+                resetTransactionFormFields();
+            } else {
+                // L'utente ha annullato l'inserimento
+                return;
+            }
+        } else if (transactionCode && transactionName && transactionType && transactionCash && transactionCategory && transactionChannel && transactionDate && transactionNote) {
             const newTransaction = {
                 code: transactionCode,
                 name: transactionName,
@@ -75,12 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             addNewTransaction(newTransaction);
-            
+            updateTotalsDisplay();            
             hideTransactionForm();
             resetTransactionFormFields();
-
         } else {
-            alert('Please enter all transaction fields!');
+            alert('Per favore, inserisci tutti i campi della transazione.');
         }
     });
 
@@ -110,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function addNewTransaction(transaction) {
         transactions.push(transaction);
         renderTransactionList(transactions);
+        updateTotalsDisplay();
         saveTransactionListToLocalStorage(transactions);
     }
     
@@ -126,7 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const transactionItem = document.createElement('li');
             transactionItem.innerHTML = `
                 <span>${transaction.code}</span>
-                <span>${transaction.name} ${transaction.cash}</span>
+                <span>${transaction.name}</span>
+                <span>${transaction.cash}€</span>
                 <button class="edit-button" data-code="${transaction.code}">Edit</button>
                 <button class="remove-button" data-code="${transaction.code}">Remove</button>
             `;
@@ -138,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // @mc l'inizializzazione deve avvenire su events, se no non si valorizza mai
     transactions = JSON.parse(localStorage.getItem('transactionList')) || [];
     renderTransactionList(transactions);
-
+    updateTotalsDisplay();
     
     
     // Funzione per popolare il form di modifica con i dettagli dello evento selezionato
@@ -218,28 +232,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Aggiorna la lista degli utenti con le modifiche
         renderTransactionList(transactions);
+        updateTotalsDisplay();
 
         // Salva l'array aggiornato nella localStorage
         saveTransactionListToLocalStorage(transactions);
     });
-
-    // Calcola il totale delle transazioni in entrata
-    const totalIn = transactions
-        .filter(transaction => transaction.type === 'in')
-        .reduce((total, transaction) => total + parseFloat(transaction.cash), 0);
-
-    // Calcola il totale delle transazioni in uscita
-    const totalOut = transactions
-        .filter(transaction => transaction.type === 'out')
-        .reduce((total, transaction) => total + parseFloat(transaction.cash), 0);
-
-    // Calcola il saldo totale
-    const saldo = totalIn - totalOut;
-
-    // Aggiorna l'elemento HTML che mostra il totale
-    const transactionTotalElement = document.getElementById('transaction-total');
-    transactionTotalElement.textContent = `Totale: €${saldo.toFixed(2)}`;
-
 
     // Gestore di eventi per il click sul pulsante "Remove"
     function handleRemoveButtonClick(transaction) {
@@ -255,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Aggiorna la lista degli eventi
                 renderTransactionList(transactions);
+                updateTotalsDisplay();
 
                 // Salva l'array aggiornato nella localStorage
                 saveTransactionListToLocalStorage(transactions);
@@ -271,7 +269,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Aggiungi un gestore di eventi per il clic sul pulsante
     removeAllButton.addEventListener('click', () => {
         transactions = [];        
-        renderTransactionList(transactions);        
+        renderTransactionList(transactions); 
+        updateTotalsDisplay();       
         saveTransactionListToLocalStorage(transactions);
     });
 
@@ -297,6 +296,39 @@ document.addEventListener('DOMContentLoaded', function () {
         // Aggiorna la lista degli eventi ordinata
         renderTransactionList(transactions);
     });
+
+    function calculateTotals() {
+        let totalIn = 0;
+        let totalOut = 0;
+    
+        transactions.forEach(transaction => {
+            if (transaction.type === 'IN') {
+                totalIn += parseFloat(transaction.cash);
+            } else if (transaction.type === 'OUT') {
+                totalOut += parseFloat(transaction.cash);
+            }
+        });
+    
+        return { totalIn, totalOut };
+    }
+
+    function updateTotalsDisplay() {
+        const { totalIn, totalOut } = calculateTotals();
+    
+        // Aggiorna gli elementi HTML con i totali
+        const totalInElement = document.getElementById('total-in');
+        const totalOutElement = document.getElementById('total-out');
+        const netTotalElement = document.getElementById('net-total');
+    
+        totalInElement.textContent = `Total In: €${totalIn.toFixed(2)}`;
+        totalOutElement.textContent = `Total Out: €${totalOut.toFixed(2)}`;
+    
+        // Calcola il "Net Total" come differenza tra "Total In" e "Total Out"
+        const netTotal = totalIn - totalOut;
+        netTotalElement.textContent = `Net Total: €${netTotal.toFixed(2)}`;
+    }
+
+
 
    
     const addButton = document.querySelector('.add-button');
@@ -329,4 +361,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
 });
-
